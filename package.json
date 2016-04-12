@@ -1,0 +1,26 @@
+{
+  "name": "FlashCards",
+  "version": "0.0.0",
+  "description": "Tutorial on building the single page flash cards application using react.js and redux",
+  "main": "scripts/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sAbakumoff/FlashCards.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "tutorial",
+    "spa",
+    "javascript"
+  ],
+  "author": "sergey abakumoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sAbakumoff/FlashCards/issues"
+  },
+  "homepage": "https://github.com/sAbakumoff/FlashCards"
+}
