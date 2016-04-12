@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>flash cards</title>
+	<script src="Scripts\lib\jQuery.min.js"></script>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Question</th>
+				<th>Answer</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+	<script type="text/javascript">
+		$(function () {
+			$.get('data/javascript.json', function (data) {
+				if (data) {
+					var cards = JSON.parse(data);
+					var html = '';
+					cards.forEach(function (card) {
+						html += '<tr><td>' + card.Term + '</td><td>' + card.Def + '</td></tr>'
+					})
+					$('tbody').append(html);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
