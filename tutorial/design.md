@@ -1,2 +1,2 @@
-thinking in react, compose ui
-app bar + nav menu:
+- thinking in react, compose ui
+- app bar + nav menu:
