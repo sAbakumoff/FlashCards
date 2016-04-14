@@ -4,6 +4,8 @@
   "description": "Tutorial on building the single page flash cards application using react.js and redux",
   "main": "scripts/app.js",
   "scripts": {
+    "watch": "node node_modules/watchify/bin/cmd -o scripts/bundle.js -v -d .",
+    "start": "node node_modules/http-server/bin/http-server -p 5678",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +24,26 @@
   "bugs": {
     "url": "https://github.com/sAbakumoff/FlashCards/issues"
   },
-  "homepage": "https://github.com/sAbakumoff/FlashCards"
+  "homepage": "https://github.com/sAbakumoff/FlashCards",
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "material-ui": "^0.15.0-alpha.2",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-tap-event-plugin": "^0.2.2"
+  },
+  "devDependencies": {
+    "reactify": "^1.1.1",
+    "watchify": "^3.7.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
+  }
 }
