@@ -28,9 +28,9 @@
   "dependencies": {
     "http-server": "^0.9.0",
     "material-ui": "^0.15.0-alpha.2",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "react-tap-event-plugin": "^0.2.2"
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "reactify": "^1.1.1",
