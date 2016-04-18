@@ -27,7 +27,7 @@
   "homepage": "https://github.com/sAbakumoff/FlashCards",
   "dependencies": {
     "http-server": "^0.9.0",
-    "material-ui": "^0.15.0-alpha.2",
+    "material-ui": "^0.15.0-beta.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-tap-event-plugin": "^1.0.0"
