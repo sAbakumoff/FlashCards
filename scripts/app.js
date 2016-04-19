@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {LightRawTheme, getMuiTheme, ThemeProvider} from 'material-ui/styles';
-import Main from './components/Main';
+import {LightRawTheme, getMuiTheme, MuiThemeProvider} from 'material-ui/styles';
+import Main from './components/main.js';
 
-const muiTheme = getMuiTheme(theme);
+const muiTheme = getMuiTheme(LightRawTheme);
 
 class App extends React.Component{
   render(){
     return(
-      <ThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <Main />
-      </ThemeProvider>
+      </MuiThemeProvider>
     );
   }
 }
+
 
 ReactDom.render(<App />, document.getElementById('app'));

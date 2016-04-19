@@ -1,13 +1,16 @@
 import React from 'react';
-import {AppBar, LeftNav, MenuItem, RaisedButton, FlatButton, Toolbar, ToolbarGroup, ToolbarTitle, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui';
-import {ContentFlipToBack, ContentFlipToFront} from 'material-ui/svg-icons';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import {AppBar, Drawer, MenuItem, RaisedButton, FlatButton, FloatingActionButton} from 'material-ui';
+import {ActionFlipToBack, ActionFlipToFront} from 'material-ui/svg-icons';
+
 
 
 var NavigationMenu = ()=>(
-  <LeftNav open={false}>
+  <Drawer open={false}>
     <MenuItem>Deck 1</MenuItem>
     <MenuItem>Deck 2</MenuItem>
-  </LeftNav>
+  </Drawer>
 );
 
 
@@ -30,10 +33,10 @@ var FlashCard = ()=>(
     <Card>
       <CardMedia>
         <div className='card-media'>
-        <div className='card-content'>x==y [x is equal to y]<br/>x===y [x is exactly equal to y]<br/>!= [not equal to]<br/>&gt; [greater than]<br/>&lt; [less than]<br/>&gt;= [greater than or equal to]<br/>&lt;= [less than or equal to]</div>
-        <FloatingActionButton className='btn-rotate'>
-          <ContentFlipToFront />
-        </FloatingActionButton>
+          <div className='card-content'>x==y [x is equal to y]<br/>x===y [x is exactly equal to y]<br/>!= [not equal to]<br/>&gt; [greater than]<br/>&lt; [less than]<br/>&gt;= [greater than or equal to]<br/>&lt;= [less than or equal to]</div>
+          <FloatingActionButton className='btn-rotate'>
+            <ActionFlipToBack />
+          </FloatingActionButton>
         </div>
       </CardMedia>
       <CardActions>
@@ -53,5 +56,4 @@ var Main=()=>(
   </div>
 );
 
-
-exports.default = Main;
+export default Main;
