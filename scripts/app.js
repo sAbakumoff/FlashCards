@@ -1,9 +1,7 @@
-var React = require('react');
-var ReactDom = require('react-dom');
-var theme = require('material-ui/styles').LightRawTheme;
-var getMuiTheme = require('material-ui/styles').getMuiTheme;
-var ThemeProvider = require('material-ui/styles').MuiThemeProvider;
-var Main=require('./components/main');
+import React from 'react';
+import ReactDom from 'react-dom';
+import {LightRawTheme, getMuiTheme, ThemeProvider} from 'material-ui/styles';
+import Main from './components/Main';
 
 const muiTheme = getMuiTheme(theme);
 

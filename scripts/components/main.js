@@ -1,26 +1,6 @@
-var React = require('react');
-
-var MUI = require('material-ui');
-var AppBar = MUI.AppBar;
-var LeftNav = MUI.Drawer;
-var MenuItem = MUI.MenuItem;
-var RaisedButton = MUI.RaisedButton;
-var FlatButton = MUI.FlatButton;
-var FloatingActionButton = MUI.FloatingActionButton;
-var ContentFlipToBack = require('material-ui/svg-icons').ActionFlipToBack;
-var ContentFlipToFront = require('material-ui/svg-icons').ActionFlipToFront;
-var Toolbar = MUI.Toolbar;
-var ToolbarGroup = MUI.ToolbarGroup;
-var ToolbarTitle = MUI.ToolbarTitle;
-
-var Card = MUI.Card;
-var CardActions = MUI.CardActions;
-var CardHeader = MUI.CardHeader;
-var CardMedia = MUI.CardMedia;
-var CardTitle = MUI.CardTitle;
-var CardText = MUI.CardText;
-
-var Subheader = MUI.Subheader;
+import React from 'react';
+import {AppBar, LeftNav, MenuItem, RaisedButton, FlatButton, Toolbar, ToolbarGroup, ToolbarTitle, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui';
+import {ContentFlipToBack, ContentFlipToFront} from 'material-ui/svg-icons';
 
 
 var NavigationMenu = ()=>(
@@ -29,6 +9,7 @@ var NavigationMenu = ()=>(
     <MenuItem>Deck 2</MenuItem>
   </LeftNav>
 );
+
 
 var StatusBar = ()=>(
   <Toolbar>
@@ -72,4 +53,5 @@ var Main=()=>(
   </div>
 );
 
-module.exports = Main;
+
+exports.default = Main;
