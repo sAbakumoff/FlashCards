@@ -1,15 +1,66 @@
-import {ApplicationBar, NavigationMenu} from '../components/main';
+import {AppBar} from 'material-ui';
+import {MainMenu, StatusBar, FlashCard} from '../components/main';
 import { connect } from 'react-redux'
 
-var AppBarContainer = connect(
+var toggleMenuAction = {
+  type : 'TOGGLE_MENU'
+};
+
+const answer = (isCorrect)=>(
+  {
+    type : 'ANSWER',
+    isCorrect : isCorrect
+  }
+);
+
+const resetAction = {
+    type : 'RESET'
+};
+
+export const AppBarContainer = connect(
   state=>({title:state.title}),
   dispatch=>({
-    onMenuToggle:()=>dispatch({type:'TOGGLE_MENU'})
+    onLeftIconButtonTouchTap : ()=> dispatch(toggleMenuAction)
   })
-)(ApplicationBar);
+)(AppBar);
 
-var NavMenuContainer = connect(
-  state=>({menuOpen : state.menuOpen})
-)(NavigationMenu);
+export const MainMenuContainer = connect(
+  state=>({
+    menuOpen : state.menuOpen,
+    menuItems : state.decks.map((value, index)=>({
+      id : index,
+      name : value.name
+    }))
+  }),
+  dispatch=>({
+    onMenuToggle:()=>dispatch(toggleMenuAction),
+    onMenuItemClick : (id)=>dispatch({
+      type : 'SELECT_DECK',
+      id : id
+    })
+  })
+)(MainMenu);
 
-export {AppBarContainer, NavMenuContainer};
+export const StatusBarContainer = connect(
+  state=>({
+    currentDeck : isNaN(state.activeDeckIndex) ? '' :  state.decks[state.activeDeckIndex].name,
+    status : {
+      correct : state.status.correct,
+      incorrect : state.status.incorrect,
+      remaining : state.status.total - state.status.correct - state.status.incorrect
+    }
+  }),
+  dispatch => ({
+   onReset : ()=>dispatch(resetAction)
+  })
+)(StatusBar);
+
+export const FlashCardContainer = connect(
+  state =>({
+    
+  }
+  ),
+  dispatch => ({
+      onAnswer : (isCorrect)=>dispatch(answer(isCorrect))
+  })
+)(FlashCard);

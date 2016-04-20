@@ -2,20 +2,34 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {LightRawTheme, getMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './reducers'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-var defaultState = {
-  title : 'Flashing Lights',
-  menuOpen : false
-};
+import * as reducers from './reducers';
+import { combineReducers } from 'redux'
 
-var store = createStore(reducers, defaultState);
+var theReducer = combineReducers(reducers);
+
+import injectTapPlugin from 'react-tap-event-plugin';
+injectTapPlugin();
+
+var store = createStore(theReducer);
+
+store.dispatch({
+  type : 'FETCH_DECKS',
+  items : [
+    {
+      name : 'Javascript'
+    },
+    {
+      name : 'React.js'
+    }
+  ]
+});
 
 const muiTheme = getMuiTheme(LightRawTheme);
 
-import {AppBarContainer, NavMenuContainer} from './containers';
+import {MainMenuContainer, AppBarContainer, StatusBarContainer, FlashCardContainer} from './containers';
 
 class App extends React.Component{
   render(){
@@ -24,7 +38,9 @@ class App extends React.Component{
         <Provider store={store}>
         <div>
           <AppBarContainer />
-          <NavMenuContainer />
+          <MainMenuContainer />
+          <StatusBarContainer />
+          <FlashCardContainer />
         </div>
         </Provider>
       </MuiThemeProvider>

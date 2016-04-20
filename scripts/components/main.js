@@ -5,54 +5,32 @@ import {AppBar, Drawer, MenuItem, RaisedButton, FlatButton, FloatingActionButton
 import {ActionFlipToBack, ActionFlipToFront} from 'material-ui/svg-icons';
 
 
-class ApplicationBar extends React.Component{
-
-  constructor(props, context) {
-      super(props, context);
-      this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(){
-    this.props.onMenuToggle();
-  }
-  /*return(
-    <AppBar title={title} onTitleTouchTap={onClick} />
-  );*/
-  render(){
-    return(
-      <p onClick={this.onClick}>Open menu</p>
-    )
-  }
+export const MainMenu = ({menuOpen, onMenuToggle, menuItems, onMenuItemClick})=>{
+  var mainMenuItems = menuItems.map(menuItem=>(
+    <MenuItem onTouchTap={()=>{onMenuItemClick(menuItem.id)}} key={menuItem.id}>{menuItem.name}</MenuItem>
+  ));
+  return (
+    <Drawer open={menuOpen} docked={false} openRight={true}  onRequestChange={onMenuToggle}>
+      {mainMenuItems}
+    </Drawer>
+  );
 };
 
-ApplicationBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  onMenuToggle: PropTypes.func.isRequired
-}
-
-var NavigationMenu = ({menuOpen})=>(
-  <Drawer open={menuOpen} docked={true} openRight={true}>
-    <MenuItem>Deck 1</MenuItem>
-    <MenuItem>Deck 2</MenuItem>
-  </Drawer>
-);
-
-
-var StatusBar = ()=>(
+export const StatusBar = ({currentDeck, status, onReset})=>(
   <Toolbar>
     <ToolbarGroup firstChild={true} float="left">
-      <ToolbarTitle text="Deck 1" />
-      <FlatButton label='Correct : 8' primary={true} />
-      <FlatButton label="Incorrect : 16" secondary={true} />
-      <FlatButton label="Remaining : 322"  />
+      <ToolbarTitle text={currentDeck} />
+      <FlatButton label={'Correct : ' + status.correct} primary={true} />
+      <FlatButton label={'Incorrect : ' + status.incorrect} secondary={true} />
+      <FlatButton label={'Remaining : ' + status.remaining}  />
     </ToolbarGroup>
-    <ToolbarGroup float="right">
-      <RaisedButton label="Start over" primary={true} />
+    <ToolbarGroup float='right'>
+      <RaisedButton label='Start over' primary={true} onTouchTap={onReset} />
     </ToolbarGroup>
   </Toolbar>
 );
 
-var FlashCard = ()=>(
+export const FlashCard = ({onAnswer})=>(
   <div className='card'>
     <Card>
       <CardMedia>
@@ -64,11 +42,9 @@ var FlashCard = ()=>(
         </div>
       </CardMedia>
       <CardActions>
-            <RaisedButton label="Correct" primary={true}  />
-            <RaisedButton label="Incorrect" secondary={true} />
+            <RaisedButton label="Correct" primary={true}  onTouchTap={()=>onAnswer(true)} />
+            <RaisedButton label="Incorrect" secondary={true} onTouchTap={()=>onAnswer(false)} />
       </CardActions>
     </Card>
   </div>
 );
-
-export {NavigationMenu, ApplicationBar, StatusBar, FlashCard};
