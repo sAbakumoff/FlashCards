@@ -1,0 +1,14 @@
+[
+  {
+    "name" : "javascript",
+    "cardsUrl" : "data/javascript.json"
+  },
+  {
+    "name" : "react.js",
+    "cardsUrl" : "data/reactjs.json"
+  },
+  {
+    "name" : "es2015",
+    "cardsUrl" : "data/es2015.json"
+  }
+]

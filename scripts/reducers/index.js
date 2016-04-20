@@ -1,5 +1,6 @@
 // Redux will call our reducer with an undefined state for the first time.
 
+
 export const title = (state='FlashyCards', action)=>{
   if( action.type === 'SET_TITLE' ){
     return action.title;
@@ -7,7 +8,7 @@ export const title = (state='FlashyCards', action)=>{
   return state;
 };
 
-export const menuOpen = (state=true, action)=>{
+export const menuOpen = (state=false, action)=>{
   if(action.type === 'SELECT_DECK'){
     return false;
   }
@@ -25,8 +26,8 @@ export const activeDeckIndex = (state=NaN, action)=>{
 };
 
 export const decks = (state=[], action)=>{
-  if(action.type === 'FETCH_DECKS'){
-    return action.items;
+  if(action.type === 'RECEIVED_DECKS'){
+    return action.decks;
   }
   return state;
 };
@@ -40,9 +41,7 @@ export const status = (state = {correct:0, incorrect:0, total:0}, action)=>{
     return Object.assign({}, state, outcome);
   }
   if(action.type === 'RESET'){
-    return Object.assign({}, state, {correct : 0, incorrect : 0});  
+    return Object.assign({}, state, {correct : 0, incorrect : 0});
   }
   return state;
 };
-
-

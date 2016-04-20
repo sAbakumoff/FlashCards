@@ -1,31 +1,24 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import thunkMiddleware from 'redux-thunk';
+
 import {LightRawTheme, getMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 import * as reducers from './reducers';
-import { combineReducers } from 'redux'
 
 var theReducer = combineReducers(reducers);
 
 import injectTapPlugin from 'react-tap-event-plugin';
 injectTapPlugin();
 
-var store = createStore(theReducer);
+var store = createStore(theReducer, applyMiddleware(thunkMiddleware));
 
-store.dispatch({
-  type : 'FETCH_DECKS',
-  items : [
-    {
-      name : 'Javascript'
-    },
-    {
-      name : 'React.js'
-    }
-  ]
-});
+import {fetchDecks} from './actions';
+
+store.dispatch(fetchDecks());
 
 const muiTheme = getMuiTheme(LightRawTheme);
 
