@@ -32,6 +32,23 @@ export const selectDeck=(id)=>({
   id : id
 });
 
+export const NEXT_CARD = 'NEXT_CARD';
+export const nextCard=(id)=>({
+  type : NEXT_CARD,
+  id : id
+});
+
+export const RECEIVED_CARDS = 'RECEIVED_CARDS';
+export const receivedCards = (cards)=>({
+  type : RECEIVED_CARDS,
+  cards : cards
+})
+
+export const FLIP_CARD = 'FLIP_CARD';
+export const flipCard = ()=>({
+  type : FLIP_CARD
+});
+
 export const RECEIVED_DECKS = 'RECEIVED_DECKS';
 export const receiveDecks = (decks)=>({
   type : RECEIVED_DECKS,
@@ -43,3 +60,9 @@ export const fetchDecks = ()=>{
     return fetch('data/decks.json').then(response=>response.json()).then(json=>dispatch(receiveDecks(json)));
   }
 };
+
+export const fetchCards =(cardsUrl)=>{
+  return (dispatch)=>{
+    return fetch(cardsUrl).then(response=>response.json()).then(json=>dispatch(receivedCards(json)));
+  }
+}

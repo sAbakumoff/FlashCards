@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {AppBar} from 'material-ui';
 import {MainMenu, StatusBar, FlashCard} from '../components';
 import { connect } from 'react-redux'
-import {toggleMenu, reset, answer, fetchDecks, selectDeck} from '../actions';
+import {toggleMenu, reset, answer, fetchDecks, selectDeck, fetchCards, flipCard} from '../actions';
 import { Provider } from 'react-redux';
 import {LightRawTheme, getMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 
@@ -18,7 +18,10 @@ class Root extends Component {
     this.props.dispatch(fetchDecks());
   }
   componentWillReceiveProps(newProps){
-    // todo:handle the active deck changed index
+    if(!isNaN(newProps.activeDeckIndex) && newProps.activeDeckIndex !== this.props.activeDeckIndex){
+      var cardsUrl = this.props.decks[newProps.activeDeckIndex].cardsUrl;
+      this.props.dispatch(fetchCards(cardsUrl));
+    }
   }
   renderAppBar(props, dispatch){
     var appBarProps = {
@@ -32,26 +35,36 @@ class Root extends Component {
       menuOpen : props.menuOpen,
       menuItems : props.decks.map((value, index)=>({id:index, name : value.name})),
       onMenuToggle : ()=>dispatch(toggleMenu()),
-      onMenuItemClick : (id) => dispatch(selectDeck(id)) 
+      onMenuItemClick : (id) => dispatch(selectDeck(id))
     };
     return <MainMenu {...mainMenuProps} />;
   }
   renderStatusBar(props, dispatch){
+    if(isNaN(props.activeDeckIndex)){
+      return false;
+    }
     var status = props.status;
     var statusBarProps = {
       currentDeck : isNaN(props.activeDeckIndex) ? '' :  props.decks[props.activeDeckIndex].name,
       status : {
         correct : status.correct,
         incorrect : status.incorrect,
-        remaining : status.total - status.correct - status.incorrect,
+        remaining : this.props.cards.length - status.correct - status.incorrect,
       },
       onReset : ()=>dispatch(reset())
     };
     return <StatusBar {...statusBarProps} />;
   }
   renderFlashCard(props, dispatch){
+    if(isNaN(props.activeDeckIndex) || isNaN(props.activeCardIndex)){
+      return false;
+    }
+    var activeCardIndex = this.props.activeCardIndex;
+    var cardProp = this.props.cardFront ? 'Term' : 'Def';
     var flashCardProps = {
-      onAnswer : (isCorrect)=>dispatch(answer(isCorrect))
+      onAnswer : (isCorrect)=>dispatch(answer(isCorrect)),
+      cardContent : isNaN(activeCardIndex) ?  '' :  this.props.cards[activeCardIndex][cardProp],
+      onFlipCard : ()=>dispatch(flipCard())
     };
     return <FlashCard {...flashCardProps} />;
   }
@@ -78,7 +91,5 @@ import Store from '../store';
 export default ()=>(
   <Provider store={Store}>
     <RootConnector />
-  </Provider>  
+  </Provider>
 );
-
-
