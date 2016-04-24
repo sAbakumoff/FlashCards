@@ -56,14 +56,20 @@ class Root extends Component {
     return <StatusBar {...statusBarProps} />;
   }
   renderFlashCard(props, dispatch){
+    // it's not good idea to bring any logic or calculations here, it all should be in reducers
+    // check http://redux.js.org/docs/recipes/ComputingDerivedData.html
     if(isNaN(props.activeDeckIndex) || isNaN(props.activeCardIndex)){
       return false;
     }
-    var activeCardIndex = this.props.activeCardIndex;
-    var cardProp = this.props.cardFront ? 'Term' : 'Def';
+    if(props.activeCardIndex === props.cards.length)
+    {
+      return <h1>Done</h1>;
+    }
+    var activeCardIndex = props.activeCardIndex;
+    var cardProp = props.cardFront ? 'Term' : 'Def';
     var flashCardProps = {
       onAnswer : (isCorrect)=>dispatch(answer(isCorrect)),
-      cardContent : isNaN(activeCardIndex) ?  '' :  this.props.cards[activeCardIndex][cardProp],
+      cardContent : isNaN(activeCardIndex) ?  '' :  props.cards[activeCardIndex][cardProp],
       onFlipCard : ()=>dispatch(flipCard())
     };
     return <FlashCard {...flashCardProps} />;

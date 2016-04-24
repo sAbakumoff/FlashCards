@@ -1,0 +1,22 @@
+[
+{
+  "Term":"bracket examples",
+  "Def":"[new RegExp(\"[abc]\") or /[abc]/]<br/><br/>[abc] - find any character between bracks<br/>[^abc] - find any char not in bracks<br/>[0-9] - find any digit 0-9<br/>[A-Z] - find any char from uppercase A to uppercase Z<br/>[a-z] - find any char from lowercase a to lowercase z<br/>[A-z] - find any char from uppercase A to lowercase Z<br/>(red|blue|green) - find any of the alternations specified"
+},
+{
+  "Term":"how is regexp defined?",
+  "Def":"var patt = new RegExp(pattern,modifiers)<br/>or <br/>var patt = /pattern/modifiers"
+},
+{
+  "Term":"what are regexp modifiers?",
+  "Def":"used to perform case-insensitive and global searches"
+},
+{
+  "Term":"RegExp modifiers",
+  "Def":"..."
+},
+{
+  "Term":"what does the i modifier do?",
+  "Def":"performs a case insensitive search<br/><br/>/regexp/i<br/>x=\"hello world\"<br/>y=/world/i<br/>document.write(x.match(y))--> world"
+}
+]
