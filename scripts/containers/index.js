@@ -10,7 +10,7 @@ import injectTapPlugin from 'react-tap-event-plugin';
 injectTapPlugin();
 
 
-const muiTheme = getMuiTheme(LightRawTheme);
+const muiTheme = getMuiTheme(LightRawTheme, { userAgent: 'all' });
 
 
 class Root extends Component {
