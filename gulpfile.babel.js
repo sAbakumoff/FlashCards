@@ -51,8 +51,12 @@ gulp.task('default', ['start-server'], function(){
       browserSync.init({
         server : {
           baseDir : 'dist'
+        },
+        port: 8082,
+        ui : {
+          port : 8081
         }
-      })
+      });
     })
     .task('build-all', ['clean', 'build-js', 'build-html', 'copy-data' ], function(){})
     .task('build-all-and-reload', ['build-all'],  browserSync.reload);
