@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {AppBar} from 'material-ui';
-import {MainMenu} from '../components';
+import {MainMenu, List} from '../components';
 import { connect } from 'react-redux'
 import {toggleMenu, selectCategory, fetchCourses} from '../actions';
 import { Provider } from 'react-redux';
@@ -36,6 +36,15 @@ class Root extends Component {
     };
     return <MainMenu {...mainMenuProps} />;
   }
+  renderCoursesList(props, dispatch){
+    /*if(props.courses.length === 0)
+      return;*/
+    var listProps = {
+      items : props.courses,
+      onListItemClick : (id)=>console.log(id)
+    }
+    return <List {...listProps} />;
+  }
   render(){
     var props = this.props;
     var dispatch = props.dispatch;
@@ -44,6 +53,7 @@ class Root extends Component {
         <div>
           {this.renderAppBar(props, dispatch)}
           {this.renderMainMenu(props, dispatch)}
+          {this.renderCoursesList(props, dispatch)}
         </div>
       </MuiThemeProvider>
       );

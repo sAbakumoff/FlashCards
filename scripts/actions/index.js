@@ -1,6 +1,5 @@
 import 'whatwg-fetch';
 
-const getCoursesUrl = (category)=>category.getUrl;
 
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const toggleMenu = ()=>({
@@ -26,11 +25,9 @@ export const fetchCourses = (categoryId)=>{
     var catUrl = getState().categories[categoryId].getUrl;
     return fetch('https://crossorigin.me/'+catUrl)
       .then(response=>{
-        //var response2 = response.clone();
         if (response.status >= 400) throw new Error('request failed with status ' + response.statusText);
         return response.json();
       })
       .then(json=>dispatch(receiveCourses(json.elements)));
   }
 };
-

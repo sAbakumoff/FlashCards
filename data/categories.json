@@ -1,11 +1,11 @@
 [
     {
         "displayName" : "Big Data",
-        "getUrl" : "https://api.coursera.org/api/courses.v1?q=search&query=big+data"
+        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=big+data"
     },
     {
         "displayName" : "Machine Learning",
-        "getUrl" : "https://api.coursera.org/api/courses.v1?q=search&query=machine+learning"
+        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=machine+learning"
     },
     {
         "displayName" : "Favorites",
