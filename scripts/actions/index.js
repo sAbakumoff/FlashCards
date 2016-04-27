@@ -1,10 +1,6 @@
 import 'whatwg-fetch';
 
-export const SET_TITLE = 'SET_TITLE';
-export const setTitle = (title)=>({
-  type : SET_TITLE,
-  title : title
-});
+const getCoursesUrl = (category)=>category.getUrl;
 
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const toggleMenu = ()=>({
@@ -12,57 +8,22 @@ export const toggleMenu = ()=>({
 });
 
 
-export const ANSWER = 'ANSWER';
-export const answer = (isCorrect)=>(
-  {
-    type : ANSWER,
-    isCorrect : isCorrect
-  }
-);
-
-
-export const RESET = 'RESET';
-export const reset = ()=>({
-    type : RESET
-});
-
-export const SELECT_DECK = 'SELECT_DECK';
-export const selectDeck=(id)=>({
-  type : SELECT_DECK,
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
+export const selectCategory=(id)=>({
+  type : SELECT_CATEGORY,
   id : id
 });
 
-export const NEXT_CARD = 'NEXT_CARD';
-export const nextCard=(id)=>({
-  type : NEXT_CARD,
-  id : id
+export const RECEIVE_COURSES = 'RECEIVE_COURSES';
+export const receiveCourses=(courses)=>({
+  type : RECEIVE_COURSES,
+  courses : courses
 });
 
-export const RECEIVED_CARDS = 'RECEIVED_CARDS';
-export const receivedCards = (cards)=>({
-  type : RECEIVED_CARDS,
-  cards : cards
-})
 
-export const FLIP_CARD = 'FLIP_CARD';
-export const flipCard = ()=>({
-  type : FLIP_CARD
-});
-
-export const RECEIVED_DECKS = 'RECEIVED_DECKS';
-export const receiveDecks = (decks)=>({
-  type : RECEIVED_DECKS,
-  decks : decks
-});
-
-export const fetchDecks = ()=>{
+export const fetchCourses = (category)=>{
   return (dispatch)=>{
-    return fetch('data/decks.json').then(response=>response.json()).then(json=>dispatch(receiveDecks(json)));
+    return fetch(getCoursesUrl(category)).then(response=>response.json()).then(json=>dispatch(receiveCourses(json.elements)));
   }
 };
 
-export const fetchCards =(cardsUrl)=>{
-  return (dispatch)=>{
-    return fetch(cardsUrl).then(response=>response.json()).then(json=>dispatch(receivedCards(json)));
-  }
-}
