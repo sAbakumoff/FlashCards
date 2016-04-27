@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {AppBar} from 'material-ui';
 import {MainMenu} from '../components';
 import { connect } from 'react-redux'
-import {toggleMenu, selectCategory} from '../actions';
+import {toggleMenu, selectCategory, fetchCourses} from '../actions';
 import { Provider } from 'react-redux';
 import {LightRawTheme, getMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 
@@ -14,14 +14,11 @@ const muiTheme = getMuiTheme(LightRawTheme, { userAgent: 'all' });
 
 
 class Root extends Component {
-  componentDidMount(){
-    //this.props.dispatch(fetchDecks());
-  }
   componentWillReceiveProps(newProps){
-    /*if(!isNaN(newProps.activeDeckIndex) && newProps.activeDeckIndex !== this.props.activeDeckIndex){
-      var cardsUrl = this.props.decks[newProps.activeDeckIndex].cardsUrl;
-      this.props.dispatch(fetchCards(cardsUrl));
-    }*/
+    var catId = newProps.activeCategoryId;
+    if(!isNaN(catId) && catId !== this.props.activeCategoryId){
+      this.props.dispatch(fetchCourses(catId));
+    }
   }
   renderAppBar(props, dispatch){
     var appBarProps = {

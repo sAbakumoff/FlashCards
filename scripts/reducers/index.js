@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 // Redux will call our reducer with an undefined state for the first time.
 import {SELECT_CATEGORY, TOGGLE_MENU} from '../actions';
 
@@ -15,9 +16,15 @@ export const menuOpen = (state=true, action)=>{
 
 export const categories = (state=[], action)=>state;
 
-export const activeCategoryId = (state=null, action)=>{
+export const activeCategoryId = (state=NaN, action)=>{
   if(action.type === SELECT_CATEGORY){
     return action.id;
   }
   return state;
 };
+
+export const fetchCourses = (category)=>{
+  return (dispatch)=>{
+    return fetch(category).then(response=>response.json()).then(json=>dispatch(json));
+  }
+}

@@ -52,6 +52,9 @@ gulp.task('default', ['start-server'], function(){
     .task('copy-data', function(){
       return gulp.src('./data/*.json').pipe(gulp.dest('./dist/data'));
     })
+    .task('copy-fonts', function(){
+      return gulp.src('./fonts/roboto/*.ttf').pipe(gulp.dest('./dist/fonts/roboto'));
+    })
     .task('clean', function(){
       del.sync('dist');
     })
@@ -66,5 +69,5 @@ gulp.task('default', ['start-server'], function(){
         }
       });
     })
-    .task('build-all', ['clean', 'build-js', 'build-html', 'copy-data' ], function(){})
+    .task('build-all', ['clean', 'build-js', 'build-html', 'copy-data', 'copy-fonts' ], function(){})
     .task('build-all-and-reload', ['build-all'],  browserSync.reload);

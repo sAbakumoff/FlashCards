@@ -21,9 +21,16 @@ export const receiveCourses=(courses)=>({
 });
 
 
-export const fetchCourses = (category)=>{
-  return (dispatch)=>{
-    return fetch(getCoursesUrl(category)).then(response=>response.json()).then(json=>dispatch(receiveCourses(json.elements)));
+export const fetchCourses = (categoryId)=>{
+  return (dispatch, getState)=>{
+    var catUrl = getState().categories[categoryId].getUrl;
+    return fetch('https://crossorigin.me/'+catUrl)
+      .then(response=>{
+        //var response2 = response.clone();
+        if (response.status >= 400) throw new Error('request failed with status ' + response.statusText);
+        return response.json();
+      })
+      .then(json=>dispatch(receiveCourses(json.elements)));
   }
 };
 
