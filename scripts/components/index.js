@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import {Drawer, Subheader, MenuItem, IconButton} from 'material-ui';
 import {GridList, GridTile} from 'material-ui/GridList';
 import {ActionFavoriteBorder} from 'material-ui/svg-icons'
+import {Card, CardActions, CardExpandable, CardHeader, CardMedia, CardText, CardTitle} from 'material-ui/Card'
 
 const styles = {
   root: {
@@ -42,3 +43,10 @@ export const List = ({items, onListItemClick})=>{
       </div>
   );
 };
+
+export const CourseView = ({course})=>(
+  <Card>
+    <CardTitle title={course.name}  />
+    <CardText>{course.description}</CardText>
+  </Card>
+);

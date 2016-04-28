@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppBar} from 'material-ui';
+import {AppBar, CircularProgress} from 'material-ui';
 import {MainMenu, List} from '../components';
 import { connect } from 'react-redux'
 import {toggleMenu, selectCategory, fetchCourses} from '../actions';
@@ -25,6 +25,10 @@ class Root extends Component {
       title : props.title,
       onLeftIconButtonTouchTap : ()=> dispatch(toggleMenu())
     };
+    if(props.fetching){
+      appBarProps.iconElementLeft = <CircularProgress color='white' size={0.5} />;
+      onLeftIconButtonTouchTap : ()=>{};
+    }
     return <AppBar {...appBarProps} />;
   }
   renderMainMenu(props, dispatch){
@@ -40,9 +44,9 @@ class Root extends Component {
     /*if(props.courses.length === 0)
       return;*/
     var listProps = {
-      items : props.courses,
+      items : props.coursesByCategory[props.activeCategoryId] || [],
       onListItemClick : (id)=>console.log(id)
-    }
+    };
     return <List {...listProps} />;
   }
   render(){

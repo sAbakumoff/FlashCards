@@ -70,4 +70,4 @@ gulp.task('default', ['start-server'], function(){
       });
     })
     .task('build-all', ['clean', 'build-js', 'build-html', 'copy-data', 'copy-fonts' ], function(){})
-    .task('build-all-and-reload', ['build-all'],  browserSync.reload);
+    .task('build-all-and-reload', ['build-all'],  function(){browserSync.reload()});
