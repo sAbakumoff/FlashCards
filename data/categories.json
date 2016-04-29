@@ -1,14 +1,28 @@
 [
     {
         "displayName" : "Big Data",
-        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=big+data"
+        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=big+data",
+        "logo" : "big-data-logo.jpg"
     },
     {
         "displayName" : "Machine Learning",
-        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=machine+learning"
+        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=machine+learning",
+        "logo" : "machine-learning-logo.png"
     },
     {
-        "displayName" : "Favorites",
-        "getUrl" : "/favorites"
+        "displayName" : "Data Science",
+        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=data+science",
+        "logo" : "data-science-logo.jpg"
+    },
+    {
+        "displayName" : "Algorithms and Data Structures",
+        "getUrl" : "https://api.coursera.org/api/courses.v1?fields=photoUrl&q=search&query=algorithms",
+        "logo" : "algorithms-logo.jpg"
+    },
+    {
+        "displayName" : "Saved offline",
+        "getUrl" : "/offline",
+        "logo" : "offline-logo.jpg",
+        "featured" : true
     }
 ]
